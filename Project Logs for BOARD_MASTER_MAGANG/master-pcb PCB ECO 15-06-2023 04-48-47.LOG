@@ -1,0 +1,59 @@
+Removed Pin From Net: NetName=GND Pin=UART_1-1
+Removed Pin From Net: NetName=5V Pin=UART_1-2
+Removed Pin From Net: NetName=PA_10 Pin=UART_1-3
+Removed Pin From Net: NetName=PA_9 Pin=UART_1-4
+Removed Pin From Net: NetName=GND Pin=UART_2-1
+Removed Pin From Net: NetName=5V Pin=UART_2-2
+Removed Pin From Net: NetName=PA_3 Pin=UART_2-3
+Removed Pin From Net: NetName=PA_2 Pin=UART_2-4
+Removed Member From Class: ClassName=master-schematic Member=UART_1
+Removed Member From Class: ClassName=master-schematic Member=UART_2
+Change Component Footprint: Designator=I2C Old Footprint=SHDR4W64P0X250_1X4_1240X575X700P New Footprint=B4BXHALFSN
+Change Component Footprint: Designator=LED RGB Old Footprint=SHDR4W64P0X250_1X4_1240X575X700P New Footprint=B4BXHALFSN
+Change component parameters: Designator = "I2C" ("I2C"); Footprint = "SHDR4W64P0X250_1X4_1240X575X700P"; UniqueID = "\OCTQNAVB" ("\OCTQNAVB")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/b4b-xh-a-lf-sn/jst-manufacturing"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.lcsc.com/szlcsc/JST-Sales-America-B4B-XH-A-LF-SN_C144395.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "7mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "JST (JAPAN SOLDERLESS TERMINALS)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "LED RGB" ("LED RGB"); Footprint = "SHDR4W64P0X250_1X4_1240X575X700P"; UniqueID = "\TQAHZDQR" ("\TQAHZDQR")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/b4b-xh-a-lf-sn/jst-manufacturing"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.lcsc.com/szlcsc/JST-Sales-America-B4B-XH-A-LF-SN_C144395.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "7mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "JST (JAPAN SOLDERLESS TERMINALS)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=UART 1(B4BXHALFSN)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/b4b-xh-a-lf-sn/jst-manufacturing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.lcsc.com/szlcsc/JST-Sales-America-B4B-XH-A-LF-SN_C144395.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "7mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "JST (JAPAN SOLDERLESS TERMINALS)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=UART 2(B4BXHALFSN)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/b4b-xh-a-lf-sn/jst-manufacturing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://datasheet.lcsc.com/szlcsc/JST-Sales-America-B4B-XH-A-LF-SN_C144395.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "7mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "JST (JAPAN SOLDERLESS TERMINALS)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "B4B-XH-A(LF)(SN)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=UART 1-1
+Added Pin To Net: NetName=5V Pin=UART 1-2
+Added Pin To Net: NetName=PA_10 Pin=UART 1-3
+Added Pin To Net: NetName=PA_9 Pin=UART 1-4
+Added Pin To Net: NetName=GND Pin=UART 2-1
+Added Pin To Net: NetName=5V Pin=UART 2-2
+Added Pin To Net: NetName=PA_3 Pin=UART 2-3
+Added Pin To Net: NetName=PA_2 Pin=UART 2-4
+Added Member To Class: ClassName=master-schematic Member=Component UART 1 B4B-XH-A_LF__SN_
+Added Member To Class: ClassName=master-schematic Member=Component UART 2 B4B-XH-A_LF__SN_
+Added Room: Name=master-schematic
