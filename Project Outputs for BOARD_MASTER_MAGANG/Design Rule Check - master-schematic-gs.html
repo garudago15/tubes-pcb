@@ -1,0 +1,564 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15/06/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">14:48:51</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc" class="file"><acronym title="C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc">C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">72</td></tr>
+</table>
+</td>
+</table><a name="IDW0QCGHGDPT1DNRA0ORP0XXOIVDTPS4UJQEHAG1IKFRDW2PEAJUMB"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2XXYRJED5MMYIDJ3EYL4I4HECM3GWPWRZEH0WP2C5GGLXWK4EI">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNDZVMFRPWMOVI1WZPDSOY3BSBBWIWMEZ5RJLMAN3ZTJEVGULDJ1L">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF1IQHGFJJ3JBNBQN3S1DYSOBJJVDCH0H0JPTVPFPXKYU44SS2KN">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0FU3L5QB0WDLMOAIAMGPJCSBFUTCRY22IYVGPEGJBATVAARL0SK">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEG4TZIWWU2NCFVEYMWOZ04IZWYCTQD0BSYLU3NTSQWSJ33FJBLK">Width Constraint (Min=20mil) (Max=30mil) (Preferred=25mil) (InNet('Fuse'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2I3V2J3H0TBYGI1O0VIBY4ORKCXWV03DFJEP4SUU1K4D400WLSE">Width Constraint (Min=20mil) (Max=30mil) (Preferred=25mil) (InNet('5V'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZQBZLNO0MHOPHRYL51HLBLCQQD55XBN55UBHBDOHFWHJHUKAVKD">Width Constraint (Min=20mil) (Max=30mil) (Preferred=25mil) (InNet('3V'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVEUAGW32TC2QH23JXJKEBBZQKM4WNIBIB1K4Q5NFIRZSW3NND0SJ">Width Constraint (Min=20mil) (Max=30mil) (Preferred=25mil) (InNet('GND'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXDBRO2AKEL52CXJUHSIKDC3IPGSEQYGMXROQNBB1G4EKC52DKUTC">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVITZOUK4PHD3MEHRXLAHWEJJLIN11SKUOOOJVLJWCXD0P5PUUU2P">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTPN025YOKC0HKQAHSN0T4F3QNFX4OKL2ZGM1MZIWE0FA3QHRCICN">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSD0WBEYK02G4LYTPMQM0EZKXPBVLVJE22YQBUAO1CLDJQAWRVMQ">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUTZ1UK1AQC4RJO1UMI5MXBXOLPPPUHI15NT3LRLLLFNUYPTBI2GC">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">65</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWMFFU5W44KTBORUTCYDCSVEITNXMMYBH1YLOYTBNWIAU3QM2NBVG">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUSI54VR4ONVAK4XLNUSJKNX1DG42EYJONI1XTDFEI4L1JNGAGMOO">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWK4G4LBDON25ONLLJQD3PERVCIDXUXCCOF0ULMCFQEKPW0AXBVOL">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">72</td>
+</tr>
+</table><br><a name="IDVITZOUK4PHD3MEHRXLAHWEJJLIN11SKUOOOJVLJWCXD0P5PUUU2P"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1560.32mil|Location2.X=1679.68mil|Location1.Y=5295.32mil|Location2.Y=5414.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1560.32mil|Location2.X=1679.68mil|Location1.Y=5295.32mil|Location2.Y=5414.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (1620mil,5355mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1560.32mil|Location2.X=1679.68mil|Location1.Y=760.32mil|Location2.Y=879.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1560.32mil|Location2.X=1679.68mil|Location1.Y=760.32mil|Location2.Y=879.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (1620mil,820mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6370.32mil|Location2.X=6489.68mil|Location1.Y=5295.32mil|Location2.Y=5414.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6370.32mil|Location2.X=6489.68mil|Location1.Y=5295.32mil|Location2.Y=5414.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (6430mil,5355mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6370.32mil|Location2.X=6489.68mil|Location1.Y=760.32mil|Location2.Y=879.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6370.32mil|Location2.X=6489.68mil|Location1.Y=760.32mil|Location2.Y=879.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (6430mil,820mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDUTZ1UK1AQC4RJO1UMI5MXBXOLPPPUHI15NT3LRLLLFNUYPTBI2GC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3105.961mil|Location2.X=3117.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3105.961mil|Location2.X=3117.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 1-3(3120mil,4985mil) on Multi-Layer And Track (2930mil,5029mil)(3110mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3105.961mil|Location2.X=3117.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3105.961mil|Location2.X=3117.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 1-3(3120mil,4985mil) on Multi-Layer And Track (3110mil,5029mil)(3110mil,5099mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3014.375mil|Location2.X=3025.625mil|Location1.Y=5016.383mil|Location2.Y=5027.633mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3014.375mil|Location2.X=3025.625mil|Location1.Y=5016.383mil|Location2.Y=5027.633mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad Encoder 1-5(3020mil,4985mil) on Multi-Layer And Track (2930mil,5029mil)(3110mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2922.789mil|Location2.X=2934.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2922.789mil|Location2.X=2934.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 1-7(2920mil,4985mil) on Multi-Layer And Track (2930mil,5029mil)(2930mil,5099mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2922.789mil|Location2.X=2934.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2922.789mil|Location2.X=2934.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 1-7(2920mil,4985mil) on Multi-Layer And Track (2930mil,5029mil)(3110mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.961mil|Location2.X=4172.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.961mil|Location2.X=4172.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 2-3(4175mil,4985mil) on Multi-Layer And Track (3985mil,5029mil)(4165mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.961mil|Location2.X=4172.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4160.961mil|Location2.X=4172.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 2-3(4175mil,4985mil) on Multi-Layer And Track (4165mil,5029mil)(4165mil,5099mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4069.375mil|Location2.X=4080.625mil|Location1.Y=5016.383mil|Location2.Y=5027.633mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4069.375mil|Location2.X=4080.625mil|Location1.Y=5016.383mil|Location2.Y=5027.633mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad Encoder 2-5(4075mil,4985mil) on Multi-Layer And Track (3985mil,5029mil)(4165mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3977.789mil|Location2.X=3989.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3977.789mil|Location2.X=3989.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 2-7(3975mil,4985mil) on Multi-Layer And Track (3985mil,5029mil)(3985mil,5099mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3977.789mil|Location2.X=3989.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3977.789mil|Location2.X=3989.039mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 2-7(3975mil,4985mil) on Multi-Layer And Track (3985mil,5029mil)(4165mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5145.961mil|Location2.X=5157.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5145.961mil|Location2.X=5157.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 3-3(5160mil,4985mil) on Multi-Layer And Track (4970mil,5029mil)(5150mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5145.961mil|Location2.X=5157.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5145.961mil|Location2.X=5157.211mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 3-3(5160mil,4985mil) on Multi-Layer And Track (5150mil,5029mil)(5150mil,5099mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5054.375mil|Location2.X=5065.625mil|Location1.Y=5016.383mil|Location2.Y=5027.633mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5054.375mil|Location2.X=5065.625mil|Location1.Y=5016.383mil|Location2.Y=5027.633mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad Encoder 3-5(5060mil,4985mil) on Multi-Layer And Track (4970mil,5029mil)(5150mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4962.788mil|Location2.X=4974.038mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4962.788mil|Location2.X=4974.038mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 3-7(4960mil,4985mil) on Multi-Layer And Track (4970mil,5029mil)(4970mil,5099mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4962.788mil|Location2.X=4974.038mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4962.788mil|Location2.X=4974.038mil|Location1.Y=5015.984mil|Location2.Y=5027.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad Encoder 3-7(4960mil,4985mil) on Multi-Layer And Track (4970mil,5029mil)(5150mil,5029mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3830.961mil|Location2.Y=3842.211mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3830.961mil|Location2.Y=3842.211mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO1-3(2010mil,3845mil) on Multi-Layer And Track (1896mil,3835mil)(1966mil,3835mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3830.961mil|Location2.Y=3842.211mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3830.961mil|Location2.Y=3842.211mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO1-3(2010mil,3845mil) on Multi-Layer And Track (1966mil,3655mil)(1966mil,3835mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.367mil|Location2.X=1978.617mil|Location1.Y=3739.375mil|Location2.Y=3750.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.367mil|Location2.X=1978.617mil|Location1.Y=3739.375mil|Location2.Y=3750.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad GPIO1-5(2010mil,3745mil) on Multi-Layer And Track (1966mil,3655mil)(1966mil,3835mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3647.789mil|Location2.Y=3659.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3647.789mil|Location2.Y=3659.039mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO1-7(2010mil,3645mil) on Multi-Layer And Track (1896mil,3655mil)(1966mil,3655mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3647.789mil|Location2.Y=3659.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=3647.789mil|Location2.Y=3659.039mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO1-7(2010mil,3645mil) on Multi-Layer And Track (1966mil,3655mil)(1966mil,3835mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO2-3(2010mil,4800.069mil) on Multi-Layer And Track (1896mil,4790.069mil)(1966mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO2-3(2010mil,4800.069mil) on Multi-Layer And Track (1966mil,4610.069mil)(1966mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.367mil|Location2.X=1978.617mil|Location1.Y=4694.444mil|Location2.Y=4705.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.367mil|Location2.X=1978.617mil|Location1.Y=4694.444mil|Location2.Y=4705.694mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad GPIO2-5(2010mil,4700.069mil) on Multi-Layer And Track (1966mil,4610.069mil)(1966mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO2-7(2010mil,4600.069mil) on Multi-Layer And Track (1896mil,4610.069mil)(1966mil,4610.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1967.766mil|Location2.X=1979.016mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad GPIO2-7(2010mil,4600.069mil) on Multi-Layer And Track (1966mil,4610.069mil)(1966mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2589.375mil|Location2.X=2600.625mil|Location1.Y=1773.718mil|Location2.Y=1784.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2589.375mil|Location2.X=2600.625mil|Location1.Y=1773.718mil|Location2.Y=1784.968mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R-1(2595mil,1747.525mil) on Multi-Layer And Track (2595mil,1787.525mil)(2595mil,1827.525mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2589.375mil|Location2.X=2600.625mil|Location1.Y=2110.083mil|Location2.Y=2121.333mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2589.375mil|Location2.X=2600.625mil|Location1.Y=2110.083mil|Location2.Y=2121.333mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.491mil &lt; 10mil) Between Pad R-2(2595mil,2147.526mil) on Multi-Layer And Track (2595mil,2067.526mil)(2595mil,2107.526mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.491mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3687.789mil|Location2.Y=3699.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3687.789mil|Location2.Y=3699.039mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad SPI-3(6060mil,3685mil) on Multi-Layer And Track (6104mil,3695mil)(6104mil,3875mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3687.789mil|Location2.Y=3699.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3687.789mil|Location2.Y=3699.039mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad SPI-3(6060mil,3685mil) on Multi-Layer And Track (6104mil,3695mil)(6174mil,3695mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6091.383mil|Location2.X=6102.633mil|Location1.Y=3779.375mil|Location2.Y=3790.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6091.383mil|Location2.X=6102.633mil|Location1.Y=3779.375mil|Location2.Y=3790.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad SPI-5(6060mil,3785mil) on Multi-Layer And Track (6104mil,3695mil)(6104mil,3875mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3870.961mil|Location2.Y=3882.211mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3870.961mil|Location2.Y=3882.211mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad SPI-7(6060mil,3885mil) on Multi-Layer And Track (6104mil,3695mil)(6104mil,3875mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3870.961mil|Location2.Y=3882.211mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=3870.961mil|Location2.Y=3882.211mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad SPI-7(6060mil,3885mil) on Multi-Layer And Track (6104mil,3875mil)(6174mil,3875mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad ST-Link-3(6060mil,4600.069mil) on Multi-Layer And Track (6104mil,4610.069mil)(6104mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4602.857mil|Location2.Y=4614.107mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad ST-Link-3(6060mil,4600.069mil) on Multi-Layer And Track (6104mil,4610.069mil)(6174mil,4610.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6091.383mil|Location2.X=6102.633mil|Location1.Y=4694.444mil|Location2.Y=4705.694mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6091.383mil|Location2.X=6102.633mil|Location1.Y=4694.444mil|Location2.Y=4705.694mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.984mil &lt; 10mil) Between Pad ST-Link-5(6060mil,4700.069mil) on Multi-Layer And Track (6104mil,4610.069mil)(6104mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad ST-Link-7(6060mil,4800.069mil) on Multi-Layer And Track (6104mil,4610.069mil)(6104mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6090.984mil|Location2.X=6102.234mil|Location1.Y=4786.03mil|Location2.Y=4797.28mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.119mil &lt; 10mil) Between Pad ST-Link-7(6060mil,4800.069mil) on Multi-Layer And Track (6104mil,4790.069mil)(6174mil,4790.069mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.119mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=4033.704mil|Location2.Y=4044.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=4033.704mil|Location2.Y=4044.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-3V3(3280.656mil,4039.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.172mil|Location2.X=3250.422mil|Location1.Y=4098.704mil|Location2.Y=4109.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.172mil|Location2.X=3250.422mil|Location1.Y=4098.704mil|Location2.Y=4109.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.719mil &lt; 10mil) Between Pad STM32 F407VET6-5V(3280.656mil,4139.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.719mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3933.704mil|Location2.Y=3944.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3933.704mil|Location2.Y=3944.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-GND(3280.656mil,3939.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3256.823mil|Location2.X=3264.49mil|Location1.Y=3123.731mil|Location2.Y=3131.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3256.823mil|Location2.X=3264.49mil|Location1.Y=3123.731mil|Location2.Y=3131.398mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad STM32 F407VET6-PA10(3280.656mil,3139.329mil) on Multi-Layer And Text "1" (3260.656mil,3139.329mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3133.704mil|Location2.Y=3144.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3133.704mil|Location2.Y=3144.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PA10(3280.656mil,3139.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.776mil|Location2.X=3250.026mil|Location1.Y=3033.981mil|Location2.Y=3045.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.776mil|Location2.X=3250.026mil|Location1.Y=3033.981mil|Location2.Y=3045.231mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.929mil &lt; 10mil) Between Pad STM32 F407VET6-PA12(3279.882mil,3039.606mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.929mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3233.704mil|Location2.Y=3244.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3233.704mil|Location2.Y=3244.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PA8(3280.656mil,3239.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.17mil|Location2.X=3250.42mil|Location1.Y=3833.706mil|Location2.Y=3844.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.17mil|Location2.X=3250.42mil|Location1.Y=3833.706mil|Location2.Y=3844.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.716mil &lt; 10mil) Between Pad STM32 F407VET6-PB15(3280.669mil,3839.331mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.716mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2333.704mil|Location2.Y=2344.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2333.704mil|Location2.Y=2344.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PB5(3280.656mil,2339.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2233.704mil|Location2.Y=2244.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2233.704mil|Location2.Y=2244.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PB7(3280.656mil,2239.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.776mil|Location2.X=3250.026mil|Location1.Y=2133.981mil|Location2.Y=2145.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.776mil|Location2.X=3250.026mil|Location1.Y=2133.981mil|Location2.Y=2145.231mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.929mil &lt; 10mil) Between Pad STM32 F407VET6-PB9(3279.882mil,2139.606mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.929mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2933.704mil|Location2.Y=2944.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2933.704mil|Location2.Y=2944.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PC10(3280.656mil,2939.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2833.704mil|Location2.Y=2844.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2833.704mil|Location2.Y=2844.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PC12(3280.656mil,2839.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3433.704mil|Location2.Y=3444.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3433.704mil|Location2.Y=3444.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PC6(3280.656mil,3439.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3333.704mil|Location2.Y=3344.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3333.704mil|Location2.Y=3344.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PC8(3280.656mil,3339.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2733.704mil|Location2.Y=2744.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2733.704mil|Location2.Y=2744.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD1(3280.656mil,2739.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3733.704mil|Location2.Y=3744.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3733.704mil|Location2.Y=3744.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD10(3280.656mil,3739.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3633.704mil|Location2.Y=3644.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3633.704mil|Location2.Y=3644.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD12(3280.656mil,3639.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3533.704mil|Location2.Y=3544.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=3533.704mil|Location2.Y=3544.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD14(3280.656mil,3539.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2633.704mil|Location2.Y=2644.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2633.704mil|Location2.Y=2644.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD3(3280.656mil,2639.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2533.704mil|Location2.Y=2544.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2533.704mil|Location2.Y=2544.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD5(3280.656mil,2539.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2433.704mil|Location2.Y=2444.954mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3239.164mil|Location2.X=3250.414mil|Location1.Y=2433.704mil|Location2.Y=2444.954mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.703mil &lt; 10mil) Between Pad STM32 F407VET6-PD7(3280.656mil,2439.329mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [1.703mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3374.257mil|Location2.X=3385.507mil|Location1.Y=1993.973mil|Location2.Y=2005.223mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3374.257mil|Location2.X=3385.507mil|Location1.Y=1993.973mil|Location2.Y=2005.223mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad STM32 F407VET6-PE0(3379.882mil,2039.606mil) on Multi-Layer And Track (3234.882mil,1989.606mil)(3429.828mil,1989.606mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3274.257mil|Location2.X=3285.507mil|Location1.Y=1993.973mil|Location2.Y=2005.223mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3274.257mil|Location2.X=3285.507mil|Location1.Y=1993.973mil|Location2.Y=2005.223mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad STM32 F407VET6-PE1(3279.882mil,2039.606mil) on Multi-Layer And Track (3234.882mil,1989.606mil)(3429.828mil,1989.606mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.776mil|Location2.X=3250.026mil|Location1.Y=2033.981mil|Location2.Y=2045.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3238.776mil|Location2.X=3250.026mil|Location1.Y=2033.981mil|Location2.Y=2045.231mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.929mil &lt; 10mil) Between Pad STM32 F407VET6-PE1(3279.882mil,2039.606mil) on Multi-Layer And Track (3240mil,1740mil)(3240mil,4340mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.929mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4671.858mil|Location2.X=4679.524mil|Location1.Y=3224.124mil|Location2.Y=3231.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4671.858mil|Location2.X=4679.524mil|Location1.Y=3224.124mil|Location2.Y=3231.79mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad STM32 F407VET6-PE10(4695.691mil,3239.722mil) on Multi-Layer And Text "1" (4675.691mil,3239.722mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4789.292mil|Location2.X=4800.542mil|Location1.Y=1994.365mil|Location2.Y=2005.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4789.292mil|Location2.X=4800.542mil|Location1.Y=1994.365mil|Location2.Y=2005.615mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad STM32 F407VET6-PE2(4794.917mil,2039.998mil) on Multi-Layer And Track (4649.917mil,1989.998mil)(4844.917mil,1989.998mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4689.292mil|Location2.X=4700.542mil|Location1.Y=1994.365mil|Location2.Y=2005.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4689.292mil|Location2.X=4700.542mil|Location1.Y=1994.365mil|Location2.Y=2005.615mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad STM32 F407VET6-PE3(4694.917mil,2039.998mil) on Multi-Layer And Track (4649.917mil,1989.998mil)(4844.917mil,1989.998mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWMFFU5W44KTBORUTCYDCSVEITNXMMYBH1YLOYTBNWIAU3QM2NBVG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.211mil|Location2.X=3965.461mil|Location1.Y=5182.487mil|Location2.Y=5193.737mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.211mil|Location2.X=3965.461mil|Location1.Y=5182.487mil|Location2.Y=5193.737mil|Absolute=True">Silk To Silk Clearance Constraint: (9.551mil &lt; 10mil) Between Text "PB_15" (3951.061mil,5205.606mil) on Top Overlay And Text "PD_14" (4126.061mil,5205.606mil) on Top Overlay Silk Text to Silk Clearance [9.551mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.211mil|Location2.X=3965.461mil|Location1.Y=5230.824mil|Location2.Y=5242.074mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3954.211mil|Location2.X=3965.461mil|Location1.Y=5230.824mil|Location2.Y=5242.074mil|Absolute=True">Silk To Silk Clearance Constraint: (9.551mil &lt; 10mil) Between Text "PD_10" (4126.061mil,5265.606mil) on Top Overlay And Text "PE_11" (3951.061mil,5265.606mil) on Top Overlay Silk Text to Silk Clearance [9.551mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4126.711mil|Location2.X=4137.961mil|Location1.Y=5170.824mil|Location2.Y=5182.074mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\goldw\Documents\URO\GARUDAGO15\tubes-pcb\master-schematic-gs.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4126.711mil|Location2.X=4137.961mil|Location1.Y=5170.824mil|Location2.Y=5182.074mil|Absolute=True">Silk To Silk Clearance Constraint: (4.551mil &lt; 10mil) Between Text "PD_13" (4296.061mil,5205.606mil) on Top Overlay And Text "PD_14" (4126.061mil,5205.606mil) on Top Overlay Silk Text to Silk Clearance [4.551mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
